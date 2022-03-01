@@ -20,6 +20,15 @@
     <!-- font-awesome ui-kit -->
     <script src="https://kit.fontawesome.com/a1a10002f0.js" crossorigin="anonymous"></script>
 
+    <style>
+        #details-img {
+            height: 500px;
+        }
+
+        #self-thumbnail-img {
+            height: 250px;
+        }
+    </style>
 
 </head>
 
@@ -35,6 +44,9 @@
                 aria-label="Search Food" aria-describedby="basic-addon2">
             <button onclick="searchPhones()" class="input-group-text" id="basic-addon2">Search</button>
         </div>
+
+        <!-- display phone details -->
+        <div id="display-details"></div>
 
         <!-- search result -->
         <div id="search-result" class="row row-cols-1 row-cols-md-3 g-4 mt-4">
