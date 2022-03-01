@@ -261,3 +261,18 @@ li {
     color: #3A3A3A;
     text-align: center;
 }
+
+
+/* images */
+#details-img {
+    height: 300px;
+}
+
+#self-thumbnail-img {
+    height: 250px;
+}
+
+/* footer button */
+#self-card-footer #self-details-btn {
+    margin-left: 120px;
+}
