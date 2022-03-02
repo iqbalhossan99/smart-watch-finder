@@ -28,26 +28,36 @@
 <body>
 
 
-    <div class="container">
-        <h2 class="text-center mt-5">Search Your Favourite Smart Phones and Watches.</h2>
 
+    <div class="text-center py-4 bg-light">
+        <h2>Search Your Favourite Smart Phones and Watches.</h2>
+    </div>
+    <div class="container">
         <!-- search food -->
         <div class="input-group mt-4 w-50 mx-auto">
             <input id="input-field" type="text" class="form-control" placeholder="Search" aria-label="Search Food"
                 aria-describedby="basic-addon2">
             <button onclick="searchProducts()" class="input-group-text" id="basic-addon2">Search</button>
+
         </div>
 
-        <!-- display phone details -->
+        <!-- spinner -->
+        <div id="spinner" class="text-center mt-3">
+            <h5>Loading...</h5>
+        </div>
+
+        <!-- display product details -->
         <div id="display-details"></div>
 
         <!-- search result -->
         <div id="st-title">
 
         </div>
-        <div id="search-result" class="row row-cols-1 row-cols-md-3 g-4 mt-4">
+        <div id="search-result" class="row row-cols-1 row-cols-md-3 g-4 mt-4 ">
 
         </div>
+
+        <div id="show-more-div" class="text-center "></div>
     </div>
 
 

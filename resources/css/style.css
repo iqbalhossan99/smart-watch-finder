@@ -262,8 +262,12 @@ li {
     text-align: center;
 }
 
+/* spinner */
+#spinner {
+    display: none;
+}
 
-/* images */
+/* product  images */
 #details-img {
     height: 300px;
 }
