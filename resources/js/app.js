@@ -93,7 +93,7 @@ const displayProducts = (products) => {
             productsDisplay.innerHTML = `                                                   
                 <div class="card  ">                   
                     <img  src="${product.image}" id="self-thumbnail-img" class="card-img-top rounded pt-3 w-50 mx-auto" alt="...">
-                    <div class="card-body">
+                    <div class="card-body text-center">
                         <p class="">${product.brand}</p> 
                         <h6 class="mb-2">${product.phone_name}</h6>     
                         <button onclick="getProductDetails('${product.slug}')"  id="self-details-btn"  class="rounded py-1 px-2">Details</button>                     </div>
