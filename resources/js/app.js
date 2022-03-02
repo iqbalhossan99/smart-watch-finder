@@ -72,6 +72,7 @@ const displayProducts = (products) => {
             `;
             displaySearchResult.appendChild(productsDisplay);
 
+
             spinner.style.display = 'none';
             searchResult.style.display = 'block'
 
@@ -86,12 +87,12 @@ const displayProducts = (products) => {
 
     // display show more products
     showMoreBtn.onclick = () => {
-        restItems.map(element => {
+        restItems.map(product => {
             const productsDisplay = document.createElement('div');
             productsDisplay.classList.add('col');
             productsDisplay.innerHTML = `                                                   
                 <div class="card  ">                   
-                    <img  src="${element.image}" id="self-thumbnail-img" class="card-img-top rounded pt-3 w-50 mx-auto" alt="...">
+                    <img  src="${product.image}" id="self-thumbnail-img" class="card-img-top rounded pt-3 w-50 mx-auto" alt="...">
                     <div class="card-body">
                         <p class="">${product.brand}</p> 
                         <h6 class="mb-2">${product.phone_name}</h6>     
@@ -123,6 +124,7 @@ const displayProductDetails = (phoneDetails) => {
     // clean product details
     productDetailsDiv.textContent = '';
     const createProductDetailsDiv = document.createElement('div');
+
     createProductDetailsDiv.innerHTML = `
     <h2 class="section-title mt-5"> Full Details About ${phoneDetails.name?phoneDetails.name :"Didn't find product name"}</h2> 
         <div class="col-8 mx-auto">            
@@ -130,7 +132,7 @@ const displayProductDetails = (phoneDetails) => {
                 <img src="${phoneDetails.image? phoneDetails.image : "Didn't find features img" }" id="details-img" class="card-img-top w-25 mx-auto mt-3" alt="...">
                     <div class="card-body">
                         <p class=" mt-1 ">${phoneDetails.brand? phoneDetails.brand: "Didn't find product img"}</p>
-                        <h6 class=" mt-1 text-success">${phoneDetails.name? phoneDetails.name: "Didn't find product img"}</h6>
+                        <h6 class=" mt-1 text-success fw-bold">${phoneDetails.name? phoneDetails.name: "Didn't find product img"}</h6>
                         <p class="card-text mt-1">${phoneDetails.releaseDate? phoneDetails.releaseDate : `Release date didn't found!`}</p>
                         <h3 class="mt-4">Main Features</h3>
                         <p class="card-text"> <strong>ChipSet: </strong> ${phoneDetails.mainFeatures.chipSet?phoneDetails.mainFeatures.chipSet:"Didn't find chipSet features"}</p>
