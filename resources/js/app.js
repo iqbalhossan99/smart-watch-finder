@@ -15,6 +15,7 @@ const searchProducts = () => {
     // search result
     searchResult.style.display = 'none'
 
+
     if (inputValue == '') {
         alert('Please enter you favourite phones name!')
     } else {
@@ -61,13 +62,12 @@ const displayProducts = (products) => {
             productsDisplay.innerHTML = `                                                   
                 <div class="card ">                   
                     <img  src="${product.image}" id="self-thumbnail-img" class="card-img-top rounded pt-3 w-50 mx-auto" alt="...">
-                    <div class="card-body">
-                        <h6 class="mt-3">${product.phone_name}</h6>                        
+                    <div class="card-body text-center">
+                        <p class="">${product.brand}</p> 
+                        <h6 class="mb-2">${product.phone_name}</h6>     
+                        <button onclick="getProductDetails('${product.slug}')"  id="self-details-btn"  class="rounded py-1 px-2">Details</button>                   
                     </div>
-                    <div id="self-card-footer" class="card-footer d-flex  d-md-block d-lg-flex d-xl-flex">
-                        <h6>${product.brand}</h6> 
-                        <button onclick="getProductDetails('${product.slug}')"  id="self-details-btn"  class="p-1  ms-md-0 ms-lg-3 ms-xl-5 rounded">Details</button>
-                    </div>
+                    
                 </div>
             `;
             displaySearchResult.appendChild(productsDisplay);
@@ -93,24 +93,19 @@ const displayProducts = (products) => {
                 <div class="card  ">                   
                     <img  src="${element.image}" id="self-thumbnail-img" class="card-img-top rounded pt-3 w-50 mx-auto" alt="...">
                     <div class="card-body">
-                        <h6 class="mt-3">${element.phone_name}</h6>                        
-                    </div>
-                    <div id="self-card-footer" class="card-footer d-flex  d-md-block d-lg-flex d-xl-flex">
-                        <h6>${element.brand}</h6> 
-                        <button onclick="getProductDetails('${element.slug}')"  id="self-details-btn"  class="p-1  ms-md-0 ms-lg-3 ms-xl-5 rounded">Details</button>
-                    </div>
+                        <p class="">${product.brand}</p> 
+                        <h6 class="mb-2">${product.phone_name}</h6>     
+                        <button onclick="getProductDetails('${product.slug}')"  id="self-details-btn"  class="rounded py-1 px-2">Details</button>                     </div>
+                    </div> 
                 </div>
             `;
             displaySearchResult.appendChild(productsDisplay);
 
+            // hide show more button
             showMoreButton.textContent = '';
         })
-
     }
 }
-
-
-
 
 // get products details
 const getProductDetails = (slug) => {
@@ -125,6 +120,8 @@ const productDetailsDiv = document.getElementById('display-details');
 
 // display product details
 const displayProductDetails = (phoneDetails) => {
+    // clean product details
+    productDetailsDiv.textContent = '';
     const createProductDetailsDiv = document.createElement('div');
     createProductDetailsDiv.innerHTML = `
     <h2 class="section-title mt-5"> Full Details About ${phoneDetails.name?phoneDetails.name :"Didn't find product name"}</h2> 
@@ -132,9 +129,9 @@ const displayProductDetails = (phoneDetails) => {
             <div class="card my-4 mb-3 shadow ">
                 <img src="${phoneDetails.image? phoneDetails.image : "Didn't find features img" }" id="details-img" class="card-img-top w-25 mx-auto mt-3" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title mt-3">${phoneDetails.name? phoneDetails.name: "Didn't find product img"}</h5>
-                        <h6 class="card-title mt-1 ">${phoneDetails.brand? phoneDetails.brand: "Didn't find product img"}</h6>
-                        <h6 class="card-text">${phoneDetails.releaseDate? phoneDetails.releaseDate : `Release date didn't found!`}</h6>
+                        <p class=" mt-1 ">${phoneDetails.brand? phoneDetails.brand: "Didn't find product img"}</p>
+                        <h6 class=" mt-1 text-success">${phoneDetails.name? phoneDetails.name: "Didn't find product img"}</h6>
+                        <p class="card-text mt-1">${phoneDetails.releaseDate? phoneDetails.releaseDate : `Release date didn't found!`}</p>
                         <h3 class="mt-4">Main Features</h3>
                         <p class="card-text"> <strong>ChipSet: </strong> ${phoneDetails.mainFeatures.chipSet?phoneDetails.mainFeatures.chipSet:"Didn't find chipSet features"}</p>
                         <p class="card-text"><strong>DisplaySize: </strong> ${phoneDetails.mainFeatures.displaySize?phoneDetails.mainFeatures.displaySize:"Didn't find display size features"}</p>
