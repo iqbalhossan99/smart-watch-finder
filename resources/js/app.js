@@ -1,3 +1,7 @@
+// get search result div
+const searchResult = document.getElementById('search-result');
+
+
 // search phones
 const searchProducts = () => {
     const inputField = document.getElementById('input-field');
@@ -8,8 +12,7 @@ const searchProducts = () => {
     const spinner = document.getElementById('spinner');
     spinner.style.display = 'block';
 
-    const searchResult = document.getElementById('search-result');
-
+    // search result
     searchResult.style.display = 'none'
 
     if (inputValue == '') {
@@ -24,10 +27,12 @@ const searchProducts = () => {
 
 // display phones
 const displayProducts = (products) => {
-    console.log(products)
-    // get search result div
-    const searchResult = document.getElementById('search-result');
-    searchResult.textContent = '';
+
+    // search result 
+    searchResult.style.display = 'none';
+
+    const displaySearchResult = document.getElementById('display-search-result');
+    displaySearchResult.textContent = '';
 
     // clear display product details
     productDetailsDiv.textContent = '';
@@ -39,19 +44,18 @@ const displayProducts = (products) => {
     // get max items to display in ui
     const maxItems = products.slice(0, 20);
 
+    // rest items
     const restItems = products.slice(20);
 
     if (products.length == 0) {
         alert(`Didn't find any phones`);
     } else {
-
         // create new section title div
         const newTitleDiv = document.createElement('div')
         newTitleDiv.innerHTML = `<h2 class="mt-5 text-center">Top Brand Smart Phones and Watch</h2>`
         sectionTitle.appendChild(newTitleDiv);
-        // map the phones
+        // map the maxItems
         maxItems.map(product => {
-
             const productsDisplay = document.createElement('div');
             productsDisplay.classList.add('col');
             productsDisplay.innerHTML = `                                                   
@@ -66,7 +70,7 @@ const displayProducts = (products) => {
                     </div>
                 </div>
             `;
-            searchResult.appendChild(productsDisplay);
+            displaySearchResult.appendChild(productsDisplay);
 
             spinner.style.display = 'none';
             searchResult.style.display = 'block'
@@ -74,11 +78,13 @@ const displayProducts = (products) => {
         });
     }
 
+    // show more products button
     const showMoreButton = document.getElementById('show-more-div');
     showMoreButton.innerHTML = `<button  id="show-more-btn" class=" mt-4 p-1 rounded">Show
     More</button>`;
-
     const showMoreBtn = document.getElementById('show-more-btn')
+
+    // display show more products
     showMoreBtn.onclick = () => {
         restItems.map(element => {
             const productsDisplay = document.createElement('div');
@@ -95,9 +101,10 @@ const displayProducts = (products) => {
                     </div>
                 </div>
             `;
-            searchResult.appendChild(productsDisplay);
+            displaySearchResult.appendChild(productsDisplay);
+
+            showMoreButton.textContent = '';
         })
-        // getColClass.style
 
     }
 }
@@ -105,13 +112,7 @@ const displayProducts = (products) => {
 
 
 
-
-
-
-
-
-
-// get phone details
+// get products details
 const getProductDetails = (slug) => {
     const url = `https://openapi.programming-hero.com/api/phone/${slug}`;
     fetch(url)
@@ -119,15 +120,12 @@ const getProductDetails = (slug) => {
         .then(data => displayProductDetails(data.data))
 }
 
-
+// get product details div
 const productDetailsDiv = document.getElementById('display-details');
 
-// display phone details
+// display product details
 const displayProductDetails = (phoneDetails) => {
-
-
     const createProductDetailsDiv = document.createElement('div');
-
     createProductDetailsDiv.innerHTML = `
     <h2 class="section-title mt-5"> Full Details About ${phoneDetails.name?phoneDetails.name :"Didn't find product name"}</h2> 
         <div class="col-8 mx-auto">            
@@ -135,6 +133,7 @@ const displayProductDetails = (phoneDetails) => {
                 <img src="${phoneDetails.image? phoneDetails.image : "Didn't find features img" }" id="details-img" class="card-img-top w-25 mx-auto mt-3" alt="...">
                     <div class="card-body">
                         <h5 class="card-title mt-3">${phoneDetails.name? phoneDetails.name: "Didn't find product img"}</h5>
+                        <h6 class="card-title mt-1 ">${phoneDetails.brand? phoneDetails.brand: "Didn't find product img"}</h6>
                         <h6 class="card-text">${phoneDetails.releaseDate? phoneDetails.releaseDate : `Release date didn't found!`}</h6>
                         <h3 class="mt-4">Main Features</h3>
                         <p class="card-text"> <strong>ChipSet: </strong> ${phoneDetails.mainFeatures.chipSet?phoneDetails.mainFeatures.chipSet:"Didn't find chipSet features"}</p>
@@ -154,32 +153,3 @@ const displayProductDetails = (phoneDetails) => {
     `;
     productDetailsDiv.appendChild(createProductDetailsDiv);
 }
-
-
-
-
-// search rest items
-
-// const searchRestProducts = () => {
-//     const inputField = document.getElementById('input-field');
-//     const inputValue = inputField.value;
-//     inputField.value = '';
-//     if (inputValue == '') {
-//         alert('Please enter you favourite phones name!')
-//     } else {
-//         fetch(`https://openapi.programming-hero.com/api/phones?search=${inputValue}`)
-//             .then(res => res.json())
-//             .then(data => displayRestProducts(data.data));
-//     }
-
-//     // fetch(`https://openapi.programming-hero.com/api/phones?search=iphone`)
-//     //     .then(res => res.json())
-//     //     .then(data => console.log(data.data));
-// }
-
-// const displayRestProducts = (restProducts) => {
-//     // console.log(restProducts)
-//     const newRestProducts = restProducts.slice(20)
-//     console.log(newRestProducts)
-
-// }
